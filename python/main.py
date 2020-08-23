@@ -32,7 +32,7 @@ def add_entry(tomorrow=False):
     datestring = get_datestring(tomorrow)
 
     # check if we already have $currentday
-    if int(search(datestring)) is 0:
+    if int(search(datestring)) == 0:
         scroll_to_bottom()
         add_date(datestring)
 
