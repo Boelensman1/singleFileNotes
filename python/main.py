@@ -2,6 +2,8 @@ import vim
 import datetime
 import math
 
+import calender
+
 longestDate = 27 # len(Wednesday 10 September 2020) = 27
 headerlength = longestDate + 4 * 2 + 2 # 2 spaces
 
@@ -46,6 +48,12 @@ def add_note():
 def add_todo():
     add_entry()
     scroll_to_bottom()
+
+def add_from_calender():
+    add_entry()
+    scroll_to_bottom()
+    events = calender.get_events()
+    vim.current.buffer.append(events)
 
 def add_todo_tomorrow():
     add_entry(True)
