@@ -19,8 +19,11 @@ def get_datestring(tomorrow=False):
         date = date + datetime.timedelta(days=1)
     return '=' * 4 + pad(date.strftime("%A %d %B %Y")) + '=' * 4
 
-def add_date(datestring):
-    vim.current.buffer.append(['','=' * headerlength, datestring, '=' * headerlength,'@TODO',''])
+def add_date(datestring, newline=True):
+    line = ['','=' * headerlength, datestring, '=' * headerlength,'@TODO']
+    if newline:
+        line.append('')
+    vim.current.buffer.append(line)
 
 def search(pattern):
     result = vim.eval('search("'+ pattern+'", "c")')
@@ -30,13 +33,13 @@ def scroll_to_bottom():
     length = len(vim.current.buffer)
     vim.current.window.cursor = (length,0)
 
-def add_entry(tomorrow=False):
+def add_entry(tomorrow=False, newline=True):
     datestring = get_datestring(tomorrow)
 
     # check if we already have $currentday
     if int(search(datestring)) == 0:
         scroll_to_bottom()
-        add_date(datestring)
+        add_date(datestring, newline)
 
 def add_note():
     add_entry()
@@ -50,10 +53,10 @@ def add_todo():
     scroll_to_bottom()
 
 def add_from_calender():
-    add_entry()
-    scroll_to_bottom()
+    add_entry(False, False)
     events = calender.get_events()
     vim.current.buffer.append(events)
+    scroll_to_bottom()
 
 def add_todo_tomorrow():
     add_entry(True)
