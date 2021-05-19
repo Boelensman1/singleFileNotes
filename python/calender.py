@@ -4,6 +4,9 @@ from datetime import date
 from icalendar import Calendar, Event
 from urllib.request import urlopen
 
+if 'TODO_CALENDER_URL' not in os.environ:
+    quit()
+
 url = os.environ['TODO_CALENDER_URL']
 
 def get_events():
