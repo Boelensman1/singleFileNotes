@@ -1,11 +1,12 @@
 #!/usr/bin/env python3
 import os
+import sys
 from datetime import date
 from icalendar import Calendar, Event
 from urllib.request import urlopen
 
 if 'TODO_CALENDER_URL' not in os.environ:
-    quit()
+    sys.exit(0)
 
 url = os.environ['TODO_CALENDER_URL']
 
