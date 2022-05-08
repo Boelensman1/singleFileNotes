@@ -25,10 +25,10 @@ function! AddNote()
 endfunction
 command! -nargs=0 AddNote call AddNote()
 
-function! AddTodoFromCalender()
-    python3 main.add_from_calender()
-endfunction
-command! -nargs=0 AddTodoFromCalender call AddTodoFromCalender()
+"function! AddTodoFromCalender()
+    "python3 main.add_from_calender()
+"endfunction
+"command! -nargs=0 AddTodoFromCalender call AddTodoFromCalender()
 
 function! AddTodo()
     python3 main.add_todo()
